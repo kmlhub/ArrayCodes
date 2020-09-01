@@ -1,0 +1,38 @@
+class Solution {
+    public int[] sortedSquares(int[] A) {
+        if(A.length==1)
+        {
+            A[0]*=A[0];
+            return A;
+        }
+        for(int i=0;i<A.length;i++)
+        {
+            A[i]*=A[i];
+        }
+        Arrays.sort(A);
+        return A;
+    }
+}
+
+class Solution {
+    public int[] sortedSquares(int[] A) {
+        if (A == null) return null;
+        
+        int [] ans = new int[A.length];
+     
+        int start = 0, end = A.length - 1;
+        int i = end; // insert position.
+        while (start <= end) { 
+            int pow1 = A[start] * A[start];
+            int pow2 = A[end] * A[end];
+            if (pow1 > pow2) {
+                ans[i--] = pow1;
+                start++;
+            } else {
+                ans[i--] = pow2;
+                end--;
+            }
+        }
+        return ans;
+    }
+}
