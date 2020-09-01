@@ -1,0 +1,34 @@
+class Solution {
+    public int heightChecker(int[] heights) {
+        if(heights.length==1) return 0;
+        int[] ar=new int[heights.length];
+        System.arraycopy(heights, 0, ar, 0,heights.length);
+        Arrays.sort(ar);
+       // System.out.print(heights[1]);
+        int count=0;
+        for(int i=0;i<ar.length;i++)
+        {
+            if(ar[i]!=heights[i])
+            {count++;}
+        }
+        return count;
+        
+    }
+}
+class Solution {
+    // O(NlogN) time | O(n) space
+    public int heightChecker(int[] heights) {
+        int[] copy = heights.clone();
+        int counts = 0;
+        
+        Arrays.sort(copy);
+        
+        for (int i=0;i<heights.length;i++) {
+            if (copy[i]!=heights[i]) {
+                counts++;
+            }
+        }
+        
+        return counts;
+    }
+}
