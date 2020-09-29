@@ -1,0 +1,81 @@
+class Solution {
+    int start = 0;
+    int end = 0;
+    int length = 0;
+    char[] cs = null;
+    public String longestPalindrome(String s) {
+        if (s.length()<2) {
+            return s;
+        }
+        cs = s.toCharArray();
+        length = cs.length;
+        fill(0);
+        return s.substring(start, end + 1);
+    }
+    
+    private void fill(int i){
+        if (i + 1 == length || 2* (length-i)+1<end-start) {
+            return;
+        }
+        int cur_end = i;
+        int cur_start = i;
+        while (cur_end < length - 1 && cs[cur_end] == cs[cur_end + 1]) {
+            cur_end++;
+        }
+        i = cur_end;
+        while (cur_start > 0 && cur_end < length -1  && cs[cur_start - 1] == cs[cur_end + 1]) {
+            cur_start--;
+            cur_end++;
+        }
+        if (cur_end - cur_start > end - start) {
+            end = cur_end;
+            start = cur_start;
+        }
+        fill(i+1);
+    }
+
+
+}
+
+
+class Solution {
+    public String longestPalindrome(String s) {
+        int start=0;
+        int end=0;
+        for(int i=0;i<s.length();i++)
+        {
+            char c=s.charAt(i);
+            int left=i;
+            int right=i;
+            
+            while(left>=0 && s.charAt(left)==c)
+            {
+                left--;
+            }
+            
+            while(right<s.length() && s.charAt(right)==c)
+            {
+                right++;
+            }
+            
+            while(left>=0  && right<s.length())
+            {
+                if(s.charAt(left)!=s.charAt(right))
+                {
+                    break;
+                }
+                left--;
+                right++;
+            }
+            
+           left=left+1;
+            if(end-start<right-left)
+            {
+                start=left;
+                end=right;
+            }
+            
+        }
+        return s.substring(start,end);
+    }
+}
